@@ -6,7 +6,7 @@ public class LevelLoader: MonoBehaviour
 {
     
     public void LoadGame(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game_Shoot");
     }
     public void Quit(){
         Application.Quit();
