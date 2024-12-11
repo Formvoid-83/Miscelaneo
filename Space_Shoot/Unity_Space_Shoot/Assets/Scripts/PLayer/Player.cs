@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class PLayerMovement : MonoBehaviour
+public class PLayer : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private BoxCollider2D collider;
     private Animator anim;
     public float movementSpeed  = 5f;
     Vector2 movement;
@@ -11,6 +12,7 @@ public class PLayerMovement : MonoBehaviour
     {
         this.rb = this.gameObject.GetComponent<Rigidbody2D>();
         this.anim = this.gameObject.GetComponent<Animator>();
+        collider = this.gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
