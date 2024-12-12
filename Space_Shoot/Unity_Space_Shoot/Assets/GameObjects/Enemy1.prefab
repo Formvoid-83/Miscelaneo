@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3125758379365808049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5984205111087598814}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5984205111087598814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125758379365808049}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7459789738614915378}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4631340821388382869
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,10 +62,11 @@ Transform:
   m_GameObject: {fileID: 4631340821388382869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.34, y: 4.72, z: -3.7031825}
+  m_LocalPosition: {x: 0, y: 0, z: -3.7031825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5984205111087598814}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3678177789327697336
@@ -177,7 +209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386f16d02b8d1b84c831c161413e08e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  enemyType: 0
+  life: 20
+  crashDamage: 20
+  movementSpeed: 2
 --- !u!114 &978126645567220695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cefabf7f30f974b823a7c5877c2365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_shootPrefab: {fileID: -8618432872633840690, guid: 86ef7f6c72e66654ca282e1a045300e7, type: 3}
+  enemy_shot1Prefab: {fileID: 2415817887411747704, guid: 86ef7f6c72e66654ca282e1a045300e7, type: 3}
+  enemy_shot2Prefab: {fileID: 0}
+  spawnPoint1: {fileID: 3125758379365808049}
+  spawnArray: []
 --- !u!95 &534516065776133342
 Animator:
   serializedVersion: 7

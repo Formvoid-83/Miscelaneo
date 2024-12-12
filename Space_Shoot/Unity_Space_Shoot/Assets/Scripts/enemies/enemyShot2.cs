@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.Pool;
-
-public class enemyShot : MonoBehaviour
+public class enemyShot2 : MonoBehaviour
 {
     private float speed;
     private Vector2 direction;
-    private ObjectPool<enemyShot> myPool;
+    private ObjectPool<enemyShot2> myPool;
     private BoxCollider2D collider;
-    public ObjectPool<enemyShot> MyPool { get => myPool; set => myPool = value; }
+    public ObjectPool<enemyShot2> MyPool { get => myPool; set => myPool = value; }
     private float timer;
-    public int damage= 15;
-
-    void Start(){
+    public int damage= 25;
+    void Start()
+    {
         collider = this.gameObject.GetComponent<BoxCollider2D>();
         direction=new Vector2(0f,-1f);
         speed=5f;
-        //Destroy(this.gameObject,8);
     }
-    void Update(){
+
+    // Update is called once per frame
+    void Update()
+    {
         transform.Translate(direction * speed * Time.deltaTime);
         timer += Time.deltaTime;
 

@@ -1,22 +1,21 @@
+using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.Pool;
-
-public class Enemy1 : MonoBehaviour
+public class Enemy2 : MonoBehaviour
 {
-    public EnemyType enemyType = EnemyType.Enemy1;
+    public EnemyType enemyType = EnemyType.Enemy2;
     private GameController gameController;
     private Rigidbody2D rb;
-    private BoxCollider2D collider;
+    private PolygonCollider2D collider;
     private Animator anim;
-    private ObjectPool<Enemy1> myPool;
-    public ObjectPool<Enemy1> MyPool { get => myPool; set => myPool = value; }
-    [SerializeField] private int life=20;
+    private ObjectPool<Enemy2> myPool;
+    public ObjectPool<Enemy2> MyPool { get => myPool; set => myPool = value; }
+    [SerializeField] private int life=50;
     private int fullLife;
-    [SerializeField] public int crashDamage=20;
-    public float movementSpeed  = 1f;
-    private int scoreValue = 10;
+    [SerializeField] public int crashDamage=30;
+    public float movementSpeed  = 3f;
+    private int scoreValue = 40;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private bool isBlinking = false;
@@ -32,7 +31,7 @@ public class Enemy1 : MonoBehaviour
         }
         this.rb = this.gameObject.GetComponent<Rigidbody2D>();
         this.anim = this.gameObject.GetComponent<Animator>();
-        collider = this.gameObject.GetComponent<BoxCollider2D>();
+        collider = this.gameObject.GetComponent<PolygonCollider2D>();
         movement.y= -1f;
         shootSystem = this.gameObject.GetComponent<enemy_Shoot_System>();
         if (shootSystem == null)
@@ -42,13 +41,11 @@ public class Enemy1 : MonoBehaviour
         //For the sprites
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+
+        fullLife = life;
         
         StartCoroutine(MoveAndPause());
-        //Time Limit
-        //Destroy(this.gameObject,8);
     }
-
-    // Update is called once per frame
     private void FixedUpdate() {
          if (isMoving)
         {   anim.SetFloat("Vertical",movement.y);
@@ -104,7 +101,7 @@ public class Enemy1 : MonoBehaviour
                 if (life <= 0)
                 {
                     gameController.updateScore(scoreValue);
-                    life =fullLife;
+                    life =20;
                     tryRelease();
                 }
             }
@@ -121,7 +118,7 @@ public class Enemy1 : MonoBehaviour
                 if (life <= 0)
                 {
                     gameController.updateScore(scoreValue);
-                    life =20;
+                    life =fullLife;
                     tryRelease();
                 }
             }

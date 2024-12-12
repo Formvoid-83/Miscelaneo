@@ -17,13 +17,14 @@ public class Spawner : MonoBehaviour
     }
     private Enemy1 createEnemy()
     {
-     Enemy1 enemyCopy =   Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+     Enemy1 enemyCopy =   Instantiate(enemyPrefab, transform.position, Quaternion.identity).GetComponent<Enemy1>();;
      enemyCopy.MyPool = enemyPool;
      return enemyCopy;
     }
      private void getEnemy(Enemy1 enemy)
     {
         Debug.Log("GET");
+        enemy.MyPool = enemyPool; // Ensure the pool reference is still valid
         enemy.transform.position = transform.position;
         enemy.gameObject.SetActive(true);
     }
