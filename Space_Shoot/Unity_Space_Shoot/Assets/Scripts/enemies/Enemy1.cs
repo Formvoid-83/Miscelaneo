@@ -1,18 +1,28 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Enemy1 : MonoBehaviour
 {
+    private GameController gameController;
     private Rigidbody2D rb;
     private BoxCollider2D collider;
     private Animator anim;
+    private ObjectPool<Enemy1> myPool;
+    public ObjectPool<Enemy1> MyPool { get => myPool; set => myPool = value; }
     public float movementSpeed  = 1f;
+    private int scoreValue = 10;
     private bool isMoving = true;
     Vector2 movement;
     protected enemy_Shoot_System shootSystem;
+    private float timer;
     void Start()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        if(gameController==null){
+            Debug.Log("El enemigo no pudo conseguir el Game Controller");
+        }
         this.rb = this.gameObject.GetComponent<Rigidbody2D>();
         this.anim = this.gameObject.GetComponent<Animator>();
         collider = this.gameObject.GetComponent<BoxCollider2D>();
@@ -24,6 +34,8 @@ public class Enemy1 : MonoBehaviour
         }
         
         StartCoroutine(MoveAndPause());
+        //Time Limit
+        Destroy(this.gameObject,8);
     }
 
     // Update is called once per frame
@@ -35,6 +47,11 @@ public class Enemy1 : MonoBehaviour
         }else{
             anim.SetFloat("Vertical",0.02f);
             rb.MovePosition(rb.position);
+        }
+        //Timer for Pooling
+        if(timer== 4){
+            timer=0;
+            myPool.Release(this);
         }
 
     }
@@ -61,6 +78,7 @@ public class Enemy1 : MonoBehaviour
         // Check if the collided object is tagged as "playerShot"
         if (collision.CompareTag("playerShot"))
         {
+            gameController.updateScore(scoreValue);
             Destroy(this.gameObject); // Destroy Enemy1
             Destroy(collision.gameObject); // Destroy the player's shot
         }

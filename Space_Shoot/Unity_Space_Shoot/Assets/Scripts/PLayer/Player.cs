@@ -8,6 +8,7 @@ public class PLayer : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D collider;
     private Animator anim;
+
     public float movementSpeed  = 5f;
     public float maxHealth = 100f;
     private float currentHealth;

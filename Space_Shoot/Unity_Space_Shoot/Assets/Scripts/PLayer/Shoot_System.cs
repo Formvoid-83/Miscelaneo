@@ -6,6 +6,9 @@ using UnityEngine.Pool;
 public class Shoot_System : MonoBehaviour
 {
     [SerializeField] private Shoot shootPrefab;
+    [SerializeField] private GameObject defaultSpawn;
+    [SerializeField] private GameObject leftSpawn;
+    [SerializeField] private GameObject rightSpawn;
     private ObjectPool<Shoot> shootPool;
     private float shootRatio;
     private float timer;
@@ -16,7 +19,7 @@ public class Shoot_System : MonoBehaviour
     }
     private Shoot createShot()
     {
-     Shoot shotCopy =   Instantiate(shootPrefab, transform.position, Quaternion.identity);
+     Shoot shotCopy =   Instantiate(shootPrefab, defaultSpawn.transform.position, Quaternion.identity);
      shotCopy.MyPool = shootPool;
      return shotCopy;
     }
@@ -24,7 +27,7 @@ public class Shoot_System : MonoBehaviour
     private void getShot(Shoot shoot)
     {
         Debug.Log("GET");
-        shoot.transform.position = transform.position;
+        shoot.transform.position = defaultSpawn.transform.position;
         shoot.gameObject.SetActive(true);
     }
     private void releaseShot(Shoot shoot)

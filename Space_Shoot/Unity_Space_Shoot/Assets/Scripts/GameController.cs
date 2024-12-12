@@ -1,15 +1,22 @@
 using UnityEngine;
 
-using TMPro; // For TextMeshPro
+using TMPro;
+using Microsoft.Unity.VisualStudio.Editor; // For TextMeshPro
 
 public class GameController : MonoBehaviour
 {
     private GameObject gameOverScreen;
     private bool isGameOver = false;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject shieldBar;
+    private int theScore;
+    private bool shieldActive;
 
     void Start()
     {
         gameOverScreen = GameObject.FindWithTag("GameOver");
+        shieldBar.SetActive(false);
+        shieldActive = false;
         if (gameOverScreen != null)
         {
             gameOverScreen.SetActive(false);
@@ -41,5 +48,9 @@ public class GameController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );
+    }
+    public void updateScore(int score){
+        theScore += score;
+        scoreText.text = "Score: " + theScore;
     }
 }
