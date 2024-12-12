@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6413720170069611470}
   - component: {fileID: -8618432872633840690}
   m_Layer: 0
-  m_Name: enemyShot 1
-  m_TagString: Untagged
+  m_Name: enemyShot
+  m_TagString: enemyShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,4 +138,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db79e26cee5d5f84d87cd09240ff3871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  damage: 15

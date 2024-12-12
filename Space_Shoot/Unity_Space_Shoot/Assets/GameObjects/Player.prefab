@@ -212,4 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde45dc9fb81a8746befc9a0d39c5987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 8605855424282390437, guid: b82589098df886441bf8fe166b3fabf9, type: 3}
   movementSpeed: 5
+  maxHealth: 100

@@ -7,6 +7,9 @@ TagManager:
   - enemy
   - LimitCollition
   - playerShot
+  - healthBarFill
+  - enemyShot
+  - GameOver
   layers:
   - Default
   - TransparentFX

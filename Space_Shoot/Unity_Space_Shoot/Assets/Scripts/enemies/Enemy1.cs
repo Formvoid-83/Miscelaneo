@@ -7,7 +7,7 @@ public class Enemy1 : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D collider;
     private Animator anim;
-    public float movementSpeed  = 0.3f;
+    public float movementSpeed  = 1f;
     private bool isMoving = true;
     Vector2 movement;
     protected enemy_Shoot_System shootSystem;
@@ -50,6 +50,9 @@ public class Enemy1 : MonoBehaviour
             if (shootSystem != null)
             {
                 shootSystem.ShootNow(); // Replace 'Shoot' with the actual method name
+            }
+            else{
+                Debug.Log("No se puede siparara");
             }
         }
     }

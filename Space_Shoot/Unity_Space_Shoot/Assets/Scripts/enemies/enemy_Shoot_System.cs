@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 public class enemy_Shoot_System : MonoBehaviour
 {
-        [SerializeField] private enemyShot enemy_shootPrefab;
+     [SerializeField] private enemyShot enemy_shootPrefab;
     private ObjectPool<enemyShot> shootPool;
     private float shootRatio;
     private float timer;
@@ -51,4 +51,5 @@ public class enemy_Shoot_System : MonoBehaviour
            timer=0;
         }
     }
+    
 }
