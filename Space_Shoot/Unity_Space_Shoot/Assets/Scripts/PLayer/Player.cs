@@ -64,9 +64,27 @@ public class PLayer : MonoBehaviour
                 //Destroy(collision.gameObject); // Destroy the enemy shot
             }
         }
+        if (collision.CompareTag("enemyShot2"))
+        {
+            enemyShot2 shot = collision.GetComponent<enemyShot2>();
+            if (shot != null)
+            {
+                TakeDamage(shot.damage); // Reduce health by the damage amount
+                //Destroy(collision.gameObject); // Destroy the enemy shot
+            }
+        }
         if (collision.CompareTag("enemy"))
         {
             Enemy1 enemy = collision.GetComponent<Enemy1>();
+            if (enemy != null)
+            {
+                TakeDamage(enemy.crashDamage); // Reduce health by the damage amount
+                //Destroy(collision.gameObject); // Destroy the enemy shot
+            }
+        }
+        if (collision.CompareTag("enemy2"))
+        {
+            Enemy2 enemy = collision.GetComponent<Enemy2>();
             if (enemy != null)
             {
                 TakeDamage(enemy.crashDamage); // Reduce health by the damage amount

@@ -10,6 +10,8 @@ TagManager:
   - healthBarFill
   - enemyShot
   - GameOver
+  - enemyShot2
+  - enemy2
   layers:
   - Default
   - TransparentFX

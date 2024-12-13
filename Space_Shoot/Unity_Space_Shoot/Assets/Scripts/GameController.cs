@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     private GameObject gameOverScreen;
     private bool isGameOver = false;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private GameObject shieldBar;
     private int theScore;
     private bool shieldActive;
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
     {
         isGameOver = true;
         Time.timeScale = 0f;
+        finalScoreText.text = "Final Score: "+ theScore;
         if (gameOverScreen != null)
         {
             gameOverScreen.SetActive(true);

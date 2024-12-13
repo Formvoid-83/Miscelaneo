@@ -23,6 +23,11 @@ public class Enemy2 : MonoBehaviour
     Vector2 movement;
     protected enemy_Shoot_System shootSystem;
     private float timer;
+    void Awake(){
+        //For the sprites
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+    }
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -38,9 +43,6 @@ public class Enemy2 : MonoBehaviour
         {
             Debug.LogWarning("enemy_Shoot_System script not found on this GameObject.");
         }
-        //For the sprites
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
 
         fullLife = life;
         
@@ -123,6 +125,15 @@ public class Enemy2 : MonoBehaviour
                 }
             }
         }
+    }
+    public void recharge(){
+    life = fullLife;  // Reset life
+    movement.y = -1f; // Reset movement direction
+    spriteRenderer.color = originalColor; // Reset color
+    isBlinking = false; // Reset blinking state
+    //isMoving = true; // Enable movement
+    StopAllCoroutines(); // Stop any ongoing coroutines
+    StartCoroutine(MoveAndPause()); 
     }
     IEnumerator BlinkEffect()
     {

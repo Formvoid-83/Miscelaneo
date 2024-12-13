@@ -24,6 +24,11 @@ public class Enemy1 : MonoBehaviour
     Vector2 movement;
     protected enemy_Shoot_System shootSystem;
     private float timer;
+    void Awake(){
+        //For the sprites
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+    }
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -39,9 +44,7 @@ public class Enemy1 : MonoBehaviour
         {
             Debug.LogWarning("enemy_Shoot_System script not found on this GameObject.");
         }
-        //For the sprites
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
+        
         
         StartCoroutine(MoveAndPause());
         //Time Limit
@@ -58,12 +61,6 @@ public class Enemy1 : MonoBehaviour
             anim.SetFloat("Vertical",0.02f);
             rb.MovePosition(rb.position);
         }
-        //Timer for Pooling
-        /*if(timer== 4){
-            timer=0;
-            myPool.Release(this);
-        }*/
-        //Delete itself if out of bounds
         if(rb.position.y <= -8f ){
             tryRelease();
         }
@@ -104,7 +101,6 @@ public class Enemy1 : MonoBehaviour
                 if (life <= 0)
                 {
                     gameController.updateScore(scoreValue);
-                    life =fullLife;
                     tryRelease();
                 }
             }
@@ -121,11 +117,20 @@ public class Enemy1 : MonoBehaviour
                 if (life <= 0)
                 {
                     gameController.updateScore(scoreValue);
-                    life =20;
                     tryRelease();
                 }
             }
         }
+    }
+    public void recharge(){
+    life = fullLife;  // Reset life
+    movement.y = -1f; // Reset movement direction
+    //transform.position = new Vector2(Random.Range(-9, 9), 10f); // Reset position to a spawning point
+    spriteRenderer.color = originalColor; // Reset color
+    isBlinking = false; // Reset blinking state
+    //isMoving = true; // Enable movement
+    StopAllCoroutines(); // Stop any ongoing coroutines
+    StartCoroutine(MoveAndPause()); 
     }
     IEnumerator BlinkEffect()
     {
@@ -140,13 +145,13 @@ public class Enemy1 : MonoBehaviour
     }
     private void tryRelease(){
         if (myPool != null)
-            {
-                myPool.Release(this);
-            }
-            else
-            {
-                Debug.Log("myPool is null! Cannot release the object. Destroying it now");
-                Destroy(this.gameObject);
-            }
+        {
+            myPool.Release(this);
+        }
+        else
+        {
+            Debug.Log("myPool is null! Cannot release the object. Destroying it now");
+            Destroy(this.gameObject);
+        }
     }
 }
